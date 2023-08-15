@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/assets/bootstrap_5.3.1_dist_css_bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/style.css' %}">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Contact Book</h1>
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Contact Name</label>
+                    <label>
+                        <input type="text" class="form-control" name="name"
+                               placeholder="Enter Contact Name">
+                    </label>
+
+                </div>
+
+                <div class="phones">
+                    <div class="mb-3">
+                        <label class="form-label">Contact Phone</label>
+                        <label>
+                            <input type="text" class="form-control" name="phones[]"
+                                   placeholder="Enter Contact phone">
+                        </label>
+                    </div>
+                </div>
+                <div style="margin: 16px;" class="add-phone">
+                    <button>add</button>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" class="form-control"
+                           placeholder="Enter Contact phone">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $('.add-phone').click(function (event) {
+        event.preventDefault()
+        html = `<div class="mb-3">
+                        <label class="form-label">Contact Phone</label>
+                        <label>
+                            <input type="text" class="form-control" name="phones[]"
+                                   placeholder="Enter Contact phone">
+                        </label>
+                    </div>`
+        $('.phones').append(html)
+    })
+</script>
+</body>
+</html>
